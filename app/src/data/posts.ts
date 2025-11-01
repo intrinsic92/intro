@@ -1,4 +1,6 @@
 import web_perform_post from '@posts/getting-started.md?raw'
+import hooks from '@posts/react-hooks.md?raw'
+import git from '@posts/git-github-guide.md?raw'
 
 export interface PostData {
   id: string;
@@ -28,7 +30,7 @@ export const posts: PostData[] = [
     title: "React Hooks 완벽 정리",
     category: "개발",
     date: new Date("2025-10-23"),
-    content: web_perform_post,
+    content: hooks,
   },
   {
     id: "4",
@@ -38,10 +40,17 @@ export const posts: PostData[] = [
     content: web_perform_post,
   },
   {
-    id: "6",
+    id: "5",
     title: "마크다운 완벽 가이드",
     category: "튜토리얼",
     date: new Date("2025-10-20"),
     content: web_perform_post,
+  },
+  {
+    id: "6",
+    title: "깃, 깃 허브 사용 가이드",
+    category: "튜토리얼",
+    date: new Date("2025-11-01"),
+    content: git,
   },
 ];

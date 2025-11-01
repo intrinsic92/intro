@@ -14,7 +14,7 @@ export default function App() {
   const selectedPost = posts.find((p) => p.id === selectedPostId);
 
   return (
-    <div className="h-screen flex overflow-hidden bg-background">
+    <div className="h-screen flex bg-background">
       {/* 사이드바 */}
       {isSidebarOpen ? (
         <Resizable
