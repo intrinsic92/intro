@@ -1,0 +1,129 @@
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5219239[m
+[1m--- /dev/null[m
+[1m+++ b/.gitignore[m
+[36m@@ -0,0 +1,33 @@[m
+[32m+[m[32m# Node modules[m
+[32m+[m[32mnode_modules/[m
+[32m+[m[32m# 빌드 결과물[m
+[32m+[m[32mdist/[m
+[32m+[m[32mbuild/[m
+[32m+[m
+[32m+[m[32m# 로그 파일[m
+[32m+[m[32mnpm-debug.log*[m
+[32m+[m[32myarn-debug.log*[m
+[32m+[m[32myarn-error.log*[m
+[32m+[m[32mpnpm-debug.log*[m
+[32m+[m
+[32m+[m[32m# 환경 변수 파일[m
+[32m+[m[32m.env[m
+[32m+[m[32m.env.local[m
+[32m+[m[32m.env.*.local[m
+[32m+[m
+[32m+[m[32m# OS 관련[m
+[32m+[m[32m.DS_Store[m
+[32m+[m[32mThumbs.db[m
+[32m+[m
+[32m+[m[32m# IDE / 편집기[m
+[32m+[m[32m.vscode/[m
+[32m+[m[32m.idea/[m
+[32m+[m[32m*.sublime-workspace[m
+[32m+[m[32m*.sublime-project[m
+[32m+[m
+[32m+[m[32m# TypeScript[m
+[32m+[m[32m*.tsbuildinfo[m
+[32m+[m
+[32m+[m[32m# Vite 관련[m
+[32m+[m[32mvite.config.*.js[m
+[32m+[m[32mvite.config.*.ts[m
+[1mdiff --git a/app/src/App.tsx b/app/src/App.tsx[m
+[1mindex 8ae4db8..db13a35 100644[m
+[1m--- a/app/src/App.tsx[m
+[1m+++ b/app/src/App.tsx[m
+[36m@@ -14,7 +14,7 @@[m [mexport default function App() {[m
+   const selectedPost = posts.find((p) => p.id === selectedPostId);[m
+ [m
+   return ([m
+[31m-    <div className="h-screen flex overflow-hidden bg-background">[m
+[32m+[m[32m    <div className="h-screen flex bg-background">[m
+       {/* 사이드바 */}[m
+       {isSidebarOpen ? ([m
+         <Resizable[m
+[1mdiff --git a/app/src/data/posts.ts b/app/src/data/posts.ts[m
+[1mindex 40c72e9..5138dad 100644[m
+[1m--- a/app/src/data/posts.ts[m
+[1m+++ b/app/src/data/posts.ts[m
+[36m@@ -1,4 +1,6 @@[m
+ import web_perform_post from '@posts/getting-started.md?raw'[m
+[32m+[m[32mimport hooks from '@posts/react-hooks.md?raw'[m
+[32m+[m[32mimport git from '@posts/git-github-guide.md?raw'[m
+ [m
+ export interface PostData {[m
+   id: string;[m
+[36m@@ -28,7 +30,7 @@[m [mexport const posts: PostData[] = [[m
+     title: "React Hooks 완벽 정리",[m
+     category: "개발",[m
+     date: new Date("2025-10-23"),[m
+[31m-    content: web_perform_post,[m
+[32m+[m[32m    content: hooks,[m
+   },[m
+   {[m
+     id: "4",[m
+[36m@@ -38,10 +40,17 @@[m [mexport const posts: PostData[] = [[m
+     content: web_perform_post,[m
+   },[m
+   {[m
+[31m-    id: "6",[m
+[32m+[m[32m    id: "5",[m
+     title: "마크다운 완벽 가이드",[m
+     category: "튜토리얼",[m
+     date: new Date("2025-10-20"),[m
+     content: web_perform_post,[m
+   },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "6",[m
+[32m+[m[32m    title: "깃, 깃 허브 사용 가이드",[m
+[32m+[m[32m    category: "튜토리얼",[m
+[32m+[m[32m    date: new Date("2025-11-01"),[m
+[32m+[m[32m    content: git,[m
+[32m+[m[32m  },[m
+ ];[m
+[1mdiff --git a/app/src/posts/git-github-guide.md b/app/src/posts/git-github-guide.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..29b09dc[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/posts/git-github-guide.md[m
+[36m@@ -0,0 +1,7 @@[m
+[32m+[m[32m# git, github 완벽 정리[m
+[32m+[m
+[32m+[m[32mReact Hooks는 React 16.8에서 도입된 기능으로, 함수형 컴포넌트에서 상태와 생명주기 기능을 사용할 수 있게 해줍니다.[m
+[32m+[m
+[32m+[m[32m## useState[m
+[32m+[m
+[32m+[m
+[1mdiff --git a/app/vite.config.ts b/app/vite.config.ts[m
+[1mindex 077b1e4..c609068 100644[m
+[1m--- a/app/vite.config.ts[m
+[1m+++ b/app/vite.config.ts[m
+[36m@@ -52,7 +52,7 @@[m
+     },[m
+     build: {[m
+       target: 'esnext',[m
+[31m-      outDir: '../',[m
+[32m+[m[32m      outDir: 'build',[m
+     },[m
+     server: {[m
+       port: 3000,[m
+[1mdiff --git a/package-lock.json b/package-lock.json[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f855d66[m
+[1m--- /dev/null[m
+[1m+++ b/package-lock.json[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32m{[m
+[32m+[m[32m  "name": "git",[m
+[32m+[m[32m  "lockfileVersion": 3,[m
+[32m+[m[32m  "requires": true,[m
+[32m+[m[32m  "packages": {}[m
+[32m+[m[32m}[m
